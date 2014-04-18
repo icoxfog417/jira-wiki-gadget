@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+    <ModulePrefs title="__MSG_gadget.introduction.title__" description="__MSG_gadget.introduction.description__"
+                 author="icoxfog417" author_affiliation="icoxfog417"
+                 author_location="Japan" height="50"
+                 screenshot='http://icoxfog417.github.io/jira-wiki-gadget/images/screenShot.PNG'
+                 thumbnail='http://icoxfog417.github.io/jira-wiki-gadget/images/screenShot.PNG'>
+        <Optional feature="gadget-directory">
+            <Param name="categories">
+                Administration
+            </Param>
+        </Optional>
+        <Require feature="setprefs" />
+        <Require feature="dynamic-height"/>
+        <Require feature="views"/>
+        <Require feature="settitle"/>
+        <Optional feature="atlassian.util"/>
+        <Optional feature='auth-refresh'/>
+        <Require feature="oauthpopup"/>
+        <Locale>
+            <messagebundle>
+              <msg name="gadget.introduction.title">JiraWikiGadget</msg>
+              <msg name="gadget.introduction.description">Display issue's description on Dashboard. Please set issue no by query parameter of gadget url. </msg>
+            </messagebundle>
+        </Locale>
+    </ModulePrefs>
+    <!-- use of requireContext below is to invoke batching of files -->
+    <Content type="html" >
+    <![CDATA[
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <div id="wiki-css"></div>
+        <div id="wiki"></div>
+        <script type="text/javascript">
+            (function(){
+                //initialization
+                $("#wiki").empty();
+                
+                //get parameter from gadget string
+                var myURL = gadgets.util.getUrlParameters().url;
+                var isValid = false;
+                var issue = "";
+
+                var qIdx = myURL.indexOf("?");
+                if(qIdx >= 0){
+                    var params = myURL.slice(qIdx+1).split("&");
+                    var css = myURL.slice(0,qIdx).replace(".xml",".css");
+                    var pDic = [];
+                    for(var i = 0; i < params.length;i++){
+                        var keyValue = params[i].split("=");
+                        pDic.push(keyValue[0]);
+                        pDic[keyValue[0]] = keyValue[1];
+                    }
+                    
+                    if(pDic["issue"] !== undefined && pDic["issue"] !== ""){
+                        issue = pDic["issue"];
+                        if(pDic["css"] !== undefined && pDic["css"] !== ""){
+                            css.replace("jira-wiki-gadget.css",pDic["css"]);
+                        }
+                        isValid = true;
+                        $("#wiki-css").append('<link rel="stylesheet" href="' + css +'" type="text/css" />');
+                    }
+                }
+                
+                if(isValid){
+                    $.ajax({
+                        url:"/si/jira.issueviews:issue-xml/DEMO-4/DEMO-4.xml",
+                        dataType: "xml",
+                        cache:false
+                    }).done(function(data){
+                        var xml = data;
+                        var title = $(xml).find("rss").find("channel").find("item").find("summary").text();
+                        var desc = $(xml).find("rss").find("channel").find("item").find("description").text();
+                        
+                        gadgets.window.setTitle(title);
+                        $("#wiki").html(desc);
+                        
+                        setTimeout(function(){
+                            gadgets.window.adjustHeight($("#wiki").height());
+                        },1000);
+                    })
+                }else{
+                    $("#wiki").text("issue parameter is missing. please set it as gadget's query parameter (yourhost/gadget.xml?issue=000)");
+                }
+
+            })()
+        </script>
+ 
+ 
+    ]]>
+    </Content>
+</Module>

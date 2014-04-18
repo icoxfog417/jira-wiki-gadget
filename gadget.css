@@ -1,0 +1,12 @@
+﻿#wiki {
+	padding-top:5px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-bottom:15px;
+}
+div,span,p,td {
+	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-size: 14px;
+	color: #333333;
+	background-color: #ffffff;
+}
