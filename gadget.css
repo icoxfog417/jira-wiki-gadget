@@ -4,9 +4,49 @@
 	padding-right:5px;
 	padding-bottom:15px;
 }
+
+img, ul, ol, li, dl, dt, dd, pre, form, fieldset, textarea, input, select, option {
+	margin: 0;
+	padding: 0;
+}
+
 div,span,p,td {
 	font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 	font-size: 14px;
 	color: #333333;
 	background-color: #ffffff;
 }
+
+a {
+	color: #3b73af;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #551a8b;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 5px 0 5px 2px;
+	width: auto;
+	font-size:12px;
+}
+
+th {
+	border: 1px solid #cccccc;
+	background: #f5f5f5;
+	padding: 3px 4px 3px 4px;
+	text-align: center;
+}
+
+td {
+	border: 1px solid #cccccc;
+	padding: 3px 4px 3px 4px;
+}
+
+ul {
+	list-style-type: disc;
+	margin: 0 0 0 2em;
+}
+
