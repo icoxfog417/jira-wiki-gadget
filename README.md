@@ -4,6 +4,8 @@ jira-wiki-gadget
 Simple Gadget for Atlassian JIRA.
 This gadget displays title and description of issue on dashboard.You can use it like Wiki.
 
+![How to use](http://icoxfog417.github.io/jira-wiki-gadget/images/howtouse.PNG)
+
 ## How to use
 clone this repository to your web site , and add gadget from JIRA's top page.   
 Gadget's url is like below . 
