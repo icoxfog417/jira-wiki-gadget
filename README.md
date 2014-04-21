@@ -10,5 +10,5 @@ Gadget's url is like below .
 
 `yoursite/jira-wiki-gadget/gadget.xml?issue=000 `
 
-query parameter `issue` mean issue no that you want to display .
+query parameter `issue` mean issue-number that you want to display .  
 optionally , you can set `css` parameter for styling (default is `gadget.css`).
