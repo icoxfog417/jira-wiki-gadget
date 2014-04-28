@@ -62,8 +62,9 @@
                 }
                 
                 if(isValid){
+
                     $.ajax({
-                        url:"/si/jira.issueviews:issue-xml/DEMO-4/DEMO-4.xml",
+                        url:"/si/jira.issueviews:issue-xml/" + issue + "/" + issue + ".xml",
                         dataType: "xml",
                         cache:false
                     }).done(function(data){
