@@ -19,11 +19,15 @@ div,span,p,td {
 
 a {
 	color: #3b73af;
-	text-decoration: none;
 }
 
 a:visited {
 	color: #551a8b;
+}
+
+a:focus, a:hover {
+    background: #e6e6e6;
+    color: #3b73af;
 }
 
 table {
