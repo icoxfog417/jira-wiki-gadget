@@ -71,10 +71,14 @@
                         var xml = data;
                         var title = $(xml).find("rss").find("channel").find("item").find("summary").text();
                         var desc = $(xml).find("rss").find("channel").find("item").find("description").text();
-                        
+                        var $desc = $("<div>" + desc + "</div>");
+
                         gadgets.window.setTitle(title);
-                        $("#wiki").html(desc);
-                        
+
+                        //change link to external
+                        $desc.find("a[href]").attr("target","_blank");
+                        $("#wiki").html($desc[0].innerHTML);
+                
                         setTimeout(function(){
                             gadgets.window.adjustHeight($("#wiki").height());
                         },1000);
